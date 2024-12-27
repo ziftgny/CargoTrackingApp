@@ -15,6 +15,6 @@ namespace DataAccess.Concrete.EntityFramework
         {
 
         }
-       // public DataSet<Kargo> Kargolar { get; set; }
+       //public DataSet<Kargo> Kargolar { get; set; }
     }
 }
