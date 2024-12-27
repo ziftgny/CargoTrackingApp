@@ -17,5 +17,10 @@ namespace Entity.Concretes
         public double fiyat { get; set; }
         public double agirlik { get; set; }
         public DateTime? teslim_tarihi { get; set; }
+        public int kargo_durumu_id { get; set; }
+        public DateTime? son_islem_tarihi { get; set; }
+        public string teslim_alan_kisi { get; set; }
+        public int kurye_id { get; set; }
+
     }
 }
