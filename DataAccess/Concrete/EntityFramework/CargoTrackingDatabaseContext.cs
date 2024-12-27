@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Entity.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,6 @@ namespace DataAccess.Concrete.EntityFramework
         {
 
         }
-       //public DataSet<Kargo> Kargolar { get; set; }
+        public DbSet<Kargo> kargolar { get; set; }
     }
 }

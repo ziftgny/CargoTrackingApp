@@ -9,17 +9,13 @@ namespace Entity.Concretes
 {
     public class Kargo : IEntity
     {
-        public int Id { get; set; }
-        public int GondericiId { get; set; }
-        public int AliciId {get ; set; }   
-        public DateTime KabulTarihi { get; set; }
-        public int PaketTuruId { get; set; }
-        public double Fiyat { get; set; }
-        public double Agirlik { get; set; }
-        public DateTime TeslimTarihi { get; set; }
-        public int KargoDurumId { get; set; }
-        public DateTime SonIslemTarihi { get; set; }
-        public String? TeslimAlanKisi { get; set; }
-        public int? KuryeId { get; set; }
+        public int id { get; set; }
+        public int gonderici_id { get; set; }
+        public int alici_id {get ; set; }   
+        public DateTime kabul_tarihi { get; set; }
+        public int paket_turu_id { get; set; }
+        public double fiyat { get; set; }
+        public double agirlik { get; set; }
+        public DateTime? teslim_tarihi { get; set; }
     }
 }
