@@ -11,7 +11,7 @@ namespace Core.Business
         Entity GetById(int id);
         List<Entity> GetAll();
         void Add(Entity entity);
-        void Delete(Entity entity);
+        void Delete(int id);
         void Update(Entity entity);
     }
 }

@@ -42,9 +42,9 @@ namespace WebAPI.Controllers
             return Ok();
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Kargo kargo)
+        public IActionResult Delete(int id)
         {
-            _kargoService.Delete(kargo);
+            _kargoService.Delete(id);
             return Ok();
         }
     }

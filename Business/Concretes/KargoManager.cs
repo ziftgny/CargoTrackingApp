@@ -24,9 +24,9 @@ namespace Business.Concretes
             _kargoDal.Add(entity);
         }
 
-        public void Delete(Kargo entity)
+        public void Delete(int id)
         {
-            _kargoDal.Delete(entity);
+            _kargoDal.Delete(id);
         }
 
         public List<Kargo> GetAll()
@@ -36,7 +36,7 @@ namespace Business.Concretes
 
         public Kargo GetById(int id)
         {
-           return _kargoDal.Get(p => p.id == id);
+           return _kargoDal.Get(id);
         }
 
         public void Update(Kargo entity)

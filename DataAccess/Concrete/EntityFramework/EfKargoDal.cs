@@ -1,5 +1,4 @@
-﻿using Core.DataAccess.EntityFramework;
-using Core.Entities;
+﻿using Core.Entities;
 using DataAccess.Abstract;
 using Entity.Concretes;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +11,57 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfKargoDal : EfEntityRepositoryBase<Kargo, CargoTrackingDatabaseContext>, IKargoDal
+    public class EfKargoDal : IKargoDal
     {
-       
-        override public  List<Kargo> GetAll(Expression<Func<Kargo, bool>> filter = null)
+         public List<Kargo> GetAll(Expression<Func<Kargo, bool>> filter = null)
         {
             using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
             {
-                var result = context.kargolar.FromSqlRaw("SELECT * FROM kargooku(1325235)").ToList();
+                var result = context.kargolar.FromSqlRaw("SELECT * FROM kargolar").ToList();
                 return result;
+            }
+        }
+         public void Delete(int id)
+        {
+            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
+            {
+                context.Database.ExecuteSqlRaw($"CALL kargosil({id})");
+                context.SaveChanges();
+            }
+        }
+
+        public Kargo Get(int id)
+        {
+            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
+            {
+                var result = context.kargolar.FromSqlRaw($"SELECT * FROM kargooku({id})").ToList()[0];
+                return result;
+            }
+        }
+
+        public void Add(Kargo kargo)
+        {
+            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
+            {
+                string query = $"CALL kargoekleveyaguncelle(NULL,{kargo.gonderici_id},{kargo.alici_id}"
+                    + $",'{kargo.kabul_tarihi}',{kargo.paket_turu_id},{kargo.fiyat},{kargo.agirlik}"
+                    + $",NULL,{kargo.kargo_durumu_id},'{kargo.son_islem_tarihi}',NULL"
+                    + $",NULL);";
+                context.Database.ExecuteSqlRaw(query);
+                context.SaveChanges();
+            }
+        }
+
+        public void Update(Kargo kargo)
+        {
+            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
+            {
+                string query = $"CALL kargoekleveyaguncelle({kargo.id},{kargo.gonderici_id},{kargo.alici_id}"
+                    + $",'{kargo.kabul_tarihi}',{kargo.paket_turu_id},{kargo.fiyat},{kargo.agirlik}"
+                    + $",'{kargo.teslim_tarihi}',{kargo.kargo_durumu_id},'{kargo.son_islem_tarihi}','{kargo.teslim_alan_kisi}'"
+                    + $",{kargo.kurye_id});";
+                context.Database.ExecuteSqlRaw(query);
+                context.SaveChanges();
             }
         }
     }
