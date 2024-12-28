@@ -15,7 +15,7 @@ namespace Core.DataAccess.EntityFramework
         where TContext : DbContext, new()
 
     {
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             using (TContext context = new TContext())
             {
@@ -25,7 +25,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             using (TContext context = new TContext())
             {
@@ -43,11 +43,11 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public virtual List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (TContext context = new TContext())
             {
-                return filter == null ? context.Set<TEntity>().ToList() :
+                return filter == null ? context.Set<TEntity>().ToList():
                     context.Set<TEntity>().Where(filter).ToList();
             }
         }
