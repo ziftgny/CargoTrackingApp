@@ -1,7 +1,5 @@
 ﻿using Business.Abstracts;
 using Entity.Concretes;
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers

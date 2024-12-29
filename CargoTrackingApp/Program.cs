@@ -15,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IKargoService), typeof(KargoManager));
 builder.Services.AddScoped(typeof(IKargoDal), typeof(EfKargoDal));
+builder.Services.AddScoped(typeof(ICalisanService), typeof(CalisanManager));
+builder.Services.AddScoped(typeof(ICalisanDal), typeof(EfCalisanDal));
 builder.Services.AddDbContext<CargoTrackingDatabaseContext>();
 var app = builder.Build();
 

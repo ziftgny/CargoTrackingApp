@@ -14,8 +14,9 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=cargo_tracking;Username=postgres;Password=admin");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=cargo_tracking;Username=postgres;Password=receptaha");
         }
         public DbSet<Kargo> kargolar { get; set; }
+        public DbSet<Calisan> calisanlar { get; set; }
     }
 }

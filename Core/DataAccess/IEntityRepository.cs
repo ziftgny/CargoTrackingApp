@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
-    public interface IEntityRepository<T> where T : class,IEntity,new()
+    public interface IEntityRepositoryID<T> where T : class,IEntity,new()
     {
         public List<T> GetAll(Expression<Func<T,bool>> filter=null);
         public T Get(int id);

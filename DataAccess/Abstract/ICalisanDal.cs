@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IKargoDal : IEntityRepositoryID<Kargo>
+    public interface ICalisanDal : IEntityRepositoryTC<Calisan>
     {
     }
 }

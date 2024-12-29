@@ -1,5 +1,4 @@
-﻿using Core.Business;
-using Entity.Concretes;
+﻿using Entity.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Business.Abstracts
 {
-    public interface IKargoService : IBusinessServiceBase<Kargo>
+    public interface IKargoService
     {
-         
+        Kargo GetById(int id);
+        List<Kargo> GetAll();
+        void Add(Kargo entity);
+        void Delete(int id);
+        void Update(Kargo entity);
     }
 }
