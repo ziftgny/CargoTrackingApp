@@ -18,5 +18,6 @@ namespace DataAccess.Concrete.EntityFramework
         }
         public DbSet<Kargo> kargolar { get; set; }
         public DbSet<Calisan> calisanlar { get; set; }
+        public DbSet<Musteri> musteriler { get; set; }
     }
 }

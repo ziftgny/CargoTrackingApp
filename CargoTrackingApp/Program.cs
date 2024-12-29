@@ -17,6 +17,8 @@ builder.Services.AddScoped(typeof(IKargoService), typeof(KargoManager));
 builder.Services.AddScoped(typeof(IKargoDal), typeof(EfKargoDal));
 builder.Services.AddScoped(typeof(ICalisanService), typeof(CalisanManager));
 builder.Services.AddScoped(typeof(ICalisanDal), typeof(EfCalisanDal));
+builder.Services.AddScoped(typeof(IMusteriService), typeof(MusteriManager));
+builder.Services.AddScoped(typeof(IMusteriDal), typeof(EfMusteriDal));
 builder.Services.AddDbContext<CargoTrackingDatabaseContext>();
 var app = builder.Build();
 
