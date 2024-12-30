@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IMusteriDal : IEntityRepository<Musteri>
+    public interface IPaketTuruDal:IEntityRepository<Paket_Turu>
     {
-        Musteri Get(string tc);
-        void Delete(string tc);
+
     }
 }

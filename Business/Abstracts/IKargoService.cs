@@ -14,5 +14,6 @@ namespace Business.Abstracts
         void Add(Kargo entity);
         void Delete(int id);
         void Update(Kargo entity);
+        KargoDetail GetDetail(int id);
     }
 }

@@ -45,6 +45,12 @@ namespace WebAPI.Controllers
             _kargoService.Delete(id);
             return Ok();
         }
+        [HttpGet("getdetail")]
+        public IActionResult GetDetail(int id)
+        {
+            var result = _kargoService.GetDetail(id);
+            return Ok(result);
+        }
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.DataAccess.EntityFramework;
+using Core.Entities;
 using DataAccess.Abstract;
 using Entity.Concretes;
 using Microsoft.EntityFrameworkCore;
@@ -11,16 +12,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfKargoDal : IKargoDal
+    public class EfKargoDal : EfEntityRepositoryBase<Kargo, CargoTrackingDatabaseContext>, IKargoDal
     {
-         public List<Kargo> GetAll(Expression<Func<Kargo, bool>> filter = null)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                var result = context.kargolar.FromSqlRaw("SELECT * FROM kargolar").ToList();
-                return result;
-            }
-        }
          public void Delete(int id)
         {
             using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
@@ -38,30 +31,39 @@ namespace DataAccess.Concrete.EntityFramework
                 return result;
             }
         }
-
-        public void Add(Kargo kargo)
+        
+        public KargoDetail GetKargoDetail(int id)
         {
             using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
             {
-                string query = $"CALL kargoekleveyaguncelle(NULL,{kargo.gonderici_id},{kargo.alici_id}"
-                    + $",'{kargo.kabul_tarihi}',{kargo.paket_turu_id},{kargo.fiyat},{kargo.agirlik}"
-                    + $",NULL,{kargo.kargo_durumu_id},'{kargo.son_islem_tarihi}',NULL"
-                    + $",NULL);";
-                context.Database.ExecuteSqlRaw(query);
-                context.SaveChanges();
-            }
-        }
-
-        public void Update(Kargo kargo)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                string query = $"CALL kargoekleveyaguncelle({kargo.id},{kargo.gonderici_id},{kargo.alici_id}"
-                    + $",'{kargo.kabul_tarihi}',{kargo.paket_turu_id},{kargo.fiyat},{kargo.agirlik}"
-                    + $",'{kargo.teslim_tarihi}',{kargo.kargo_durumu_id},'{kargo.son_islem_tarihi}','{kargo.teslim_alan_kisi}'"
-                    + $",{kargo.kurye_id});";
-                context.Database.ExecuteSqlRaw(query);
-                context.SaveChanges();
+                var result = from k in context.kargolar
+                             join g in context.musteriler
+                             on k.gonderici_tc equals g.tc_no 
+                             join a in context.musteriler
+                             on k.alici_tc equals a.tc_no
+                             join p in context.paket_turu
+                             on k.paket_turu_id equals p.id
+                             join kd in context.kargo_durum
+                             on k.kargo_durumu_id equals kd.id
+                             join ku in context.calisanlar
+                             on k.kurye_id equals ku.id
+                             where k.id == id
+                             select new KargoDetail
+                             {
+                                 id = k.id,
+                                 gonderici_TC=g.tc_no,
+                                 alici_TC = a.tc_no,
+                                 agirlik=k.agirlik,
+                                 fiyat=k.fiyat,
+                                 kabul_tarihi = k.kabul_tarihi,
+                                 kargo_durumu_adi = kd.durum_adi,
+                                 kurye_ad_soyad = ku.ad+" "+ku.soyad,
+                                 paket_turu_adi = p.tur_adi,
+                                 son_islem_tarihi = k.son_islem_tarihi,
+                                 teslim_alan_kisi = k.teslim_alan_kisi,
+                                 teslim_tarihi = k.teslim_tarihi
+                             };
+                return result.ToList()[0];
             }
         }
     }

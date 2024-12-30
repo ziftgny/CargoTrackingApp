@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IKargoDal : IEntityRepositoryID<Kargo>
+    public interface IKargoDal : IEntityRepository<Kargo>
     {
+        Kargo Get(int id);
+        void Delete(int id);
+        KargoDetail GetKargoDetail(int id);
     }
 }

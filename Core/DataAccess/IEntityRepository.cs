@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
-    public interface IEntityRepositoryID<T> where T : class,IEntity,new()
+    public interface IEntityRepository<T> where T : class,IEntity,new()
     {
         public List<T> GetAll(Expression<Func<T,bool>> filter=null);
-        public T Get(int id);
+        public T Get(Expression<Func<T, bool>> filter);
         public void Add(T entity);
-        public void Delete(int id);
+        public void Delete(T entity);
         public void Update(T entity);
     }
 }

@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICalisanDal : IEntityRepositoryTC<Calisan>
+    public interface ICalisanDal : IEntityRepository<Calisan>
     {
+        Calisan Get(string tc);
+        void Delete(string tc);
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entity.Concretes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,18 +11,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCalisanDal : ICalisanDal
+    public class EfCalisanDal : EfEntityRepositoryBase<Calisan, CargoTrackingDatabaseContext>, ICalisanDal
     {
-        public void Add(Calisan calisan)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                string query = $"CALL calisanekle('{calisan.ad}','{calisan.soyad}'"
-                    + $",{calisan.sube_id},'{calisan.tc_no}');";
-                context.Database.ExecuteSqlRaw(query);
-                context.SaveChanges();
-            }
-        }
 
         public void Delete(string tc_no)
         {
@@ -39,26 +30,6 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = context.calisanlar.FromSqlRaw($"SELECT * FROM calisanoku('{tc_no}')").ToList()[0];
                 return result;
-            }
-        }
-
-
-        public List<Calisan> GetAll(Expression<Func<Calisan, bool>> filter = null)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                var result = context.calisanlar.FromSqlRaw("SELECT * FROM calisanlar").ToList();
-                return result;
-            }
-        }
-
-        public void Update(Calisan calisan)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                string query = $"CALL calisanguncelle('{calisan.tc_no}','{calisan.ad}','{calisan.soyad}',{calisan.sube_id});";
-                context.Database.ExecuteSqlRaw(query);
-                context.SaveChanges();
             }
         }
     }

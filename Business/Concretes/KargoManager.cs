@@ -39,6 +39,11 @@ namespace Business.Concretes
            return _kargoDal.Get(id);
         }
 
+        public KargoDetail GetDetail(int id)
+        {
+            return _kargoDal.GetKargoDetail(id);
+        }
+
         public void Update(Kargo entity)
         {
             _kargoDal.Update(entity);

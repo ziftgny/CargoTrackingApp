@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entity.Concretes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,18 +11,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfMusteriDal : IMusteriDal
+    public class EfMusteriDal : EfEntityRepositoryBase<Musteri, CargoTrackingDatabaseContext>, IMusteriDal
     {
-        public void Add(Musteri musteri)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                string query = $"CALL musteriekle('{musteri.tc_no}','{musteri.ad}','{musteri.soyad}'"
-                    + $",'{musteri.telefon_no}');";
-                context.Database.ExecuteSqlRaw(query);
-                context.SaveChanges();
-            }
-        }
 
         public void Delete(string tc)
         {
@@ -32,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+
         public Musteri Get(string tc)
         {
             using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
@@ -40,25 +32,6 @@ namespace DataAccess.Concrete.EntityFramework
                 return result;
             }
 
-        }
-
-        public List<Musteri> GetAll(Expression<Func<Musteri, bool>> filter = null)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                var result = context.musteriler.FromSqlRaw("SELECT * FROM musteriler").ToList();
-                return result;
-            }
-        }
-
-        public void Update(Musteri musteri)
-        {
-            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
-            {
-                string query = $"CALL musteriguncelle('{musteri.tc_no}','{musteri.ad}','{musteri.soyad}','{musteri.telefon_no}');";
-                context.Database.ExecuteSqlRaw(query);
-                context.SaveChanges();
-            }
         }
     }
 }
