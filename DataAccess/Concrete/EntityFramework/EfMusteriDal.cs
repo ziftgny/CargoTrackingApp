@@ -33,5 +33,38 @@ namespace DataAccess.Concrete.EntityFramework
             }
 
         }
+
+        public MusteriDetail GetDetail(string tc) {
+            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
+            {
+
+               
+                    var result = from m in context.musteriler
+                                 join a in context.adresler 
+                                 on m.tc_no equals a.musteri_tc
+                                 join il in context.iller
+                                 on a.il_id equals il.id
+                                 join ilc in context.ilceler
+                                 on a.ilce_id equals ilc.id
+                                 where m.tc_no == tc
+                                 select new MusteriDetail
+                                 {
+                                     tc_no = m.tc_no,
+                                     ad=m.ad,
+                                     soyad=m.soyad,
+                                     telefon_no=m.telefon_no,
+                                     acik_adres=a.acik_adres,
+                                     il=il.il_adi,
+                                     ilce=ilc.ilce_adi,
+                                     mah_sokak=a.mah_sokak,
+                                     numara=a.numara,
+                                     
+                                 };
+                    return result.ToList()[0];
+               
+
+            }
+        }
     }
-}
+    }
+

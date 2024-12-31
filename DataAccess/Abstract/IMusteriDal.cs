@@ -10,7 +10,9 @@ namespace DataAccess.Abstract
 {
     public interface IMusteriDal : IEntityRepository<Musteri>
     {
+        MusteriDetail GetDetail(string tc);
         Musteri Get(string tc);
         void Delete(string tc);
+      
     }
 }

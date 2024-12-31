@@ -9,9 +9,10 @@ namespace Entity.Concretes
 {
     public class KargoDetail :IEntity
     {
-        public int? id { get; set; }
-        public string gonderici_TC { get; set; }
-        public string alici_TC { get; set; }
+
+        public string? takip_no { get; set; }
+        public string gonderici_tc { get; set; }
+        public string alici_tc { get; set; }
         public DateOnly kabul_tarihi { get; set; }
         public string paket_turu_adi { get; set; }
         public double fiyat { get; set; }

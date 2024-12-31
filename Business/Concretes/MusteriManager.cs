@@ -38,6 +38,11 @@ namespace Business.Concretes
             return _musteriDal.Get(tc);
         }
 
+        public MusteriDetail GetDetail(string tc)
+        {
+            return _musteriDal.GetDetail(tc);
+        }
+
         public void Update(Musteri entity)
         {
             _musteriDal.Update(entity);

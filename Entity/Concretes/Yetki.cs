@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entity.Concretes
 {
-    public class Yetkili : IEntity
+    public class Yetki : IEntity
     {
         public int id { get; set; }
         public String yetki_adi { get; set; }

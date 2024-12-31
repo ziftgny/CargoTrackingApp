@@ -9,11 +9,11 @@ namespace Business.Abstracts
 {
     public interface IKargoService
     {
-        Kargo GetById(int id);
+        Kargo GetByTc(string takip_no);
         List<Kargo> GetAll();
         void Add(Kargo entity);
-        void Delete(int id);
+        void Delete(string takip_no);
         void Update(Kargo entity);
-        KargoDetail GetDetail(int id);
+        KargoDetail GetDetail(string takip_no);
     }
 }

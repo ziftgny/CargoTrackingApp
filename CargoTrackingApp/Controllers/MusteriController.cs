@@ -19,6 +19,12 @@ namespace WebAPI.Controllers
             var result = _musteriSercive.GetAll();
             return Ok(result);
         }
+        [HttpGet("getdetail")]
+        public IActionResult GetDetails(string tc)
+        {
+            var result = _musteriSercive.GetDetail(tc);
+            return Ok(result);
+        }
 
         [HttpGet("get")]
         public IActionResult Get(string tc)

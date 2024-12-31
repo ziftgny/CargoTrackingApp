@@ -10,7 +10,7 @@ namespace Entity.Concretes
     public class Il : IEntity
     {
         public int id { get; set; }
-        public String il_adi { get; set; }
+        public string il_adi { get; set; }
     
     }
 }

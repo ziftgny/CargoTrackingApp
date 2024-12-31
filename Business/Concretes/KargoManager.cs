@@ -24,9 +24,9 @@ namespace Business.Concretes
             _kargoDal.Add(entity);
         }
 
-        public void Delete(int id)
+        public void Delete(string takip_no)
         {
-            _kargoDal.Delete(id);
+            _kargoDal.Delete(takip_no);
         }
 
         public List<Kargo> GetAll()
@@ -34,14 +34,14 @@ namespace Business.Concretes
             return _kargoDal.GetAll();
         }
 
-        public Kargo GetById(int id)
+        public Kargo GetByTc(string takip_no)
         {
-           return _kargoDal.Get(id);
+           return _kargoDal.Get(takip_no);
         }
 
-        public KargoDetail GetDetail(int id)
+        public KargoDetail GetDetail(string takip_no)
         {
-            return _kargoDal.GetKargoDetail(id);
+            return _kargoDal.GetKargoDetail(takip_no);
         }
 
         public void Update(Kargo entity)

@@ -23,6 +23,8 @@ builder.Services.AddScoped(typeof(IKargoDurumService), typeof(KargoDurumManager)
 builder.Services.AddScoped(typeof(IKargoDurumDal), typeof(EfKargoDurumDal));
 builder.Services.AddScoped(typeof(IPaketTuruService), typeof(PaketTuruManager));
 builder.Services.AddScoped(typeof(IPaketTuruDal), typeof(EfPaketTuruDal));
+builder.Services.AddScoped(typeof(IAdresService), typeof(AdresManager));
+builder.Services.AddScoped(typeof(IAdresDal), typeof(EfAdresDal));
 builder.Services.AddDbContext<CargoTrackingDatabaseContext>();
 var app = builder.Build();
 
@@ -32,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

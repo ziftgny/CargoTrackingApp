@@ -21,5 +21,12 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Musteri> musteriler { get; set; }
         public DbSet<Paket_Turu> paket_turu { get; set; }
         public DbSet<Kargo_Durum> kargo_durum { get; set; }
+        public DbSet<Yetkili_Kullanici> yetkili_kullanicilar { get; set; }
+        public DbSet<Yetki> yetkiler  { get; set; }
+        public DbSet<Adres> adresler { get; set; }
+        public DbSet<Il> iller { get; set; }
+        public DbSet<Ilce> ilceler { get; set; }
+
+
     }
 }

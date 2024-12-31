@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace Entity.Concretes
 {
     public class Kargo : IEntity
     {
-        public int? id { get; set; }
+        [Key]
+        public string? takip_no { get; set; }
         public string gonderici_tc { get; set; }
         public string alici_tc {get ; set; }   
         public DateOnly kabul_tarihi { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Entities;
 using Entity.Concretes;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IKargoDal : IEntityRepository<Kargo>
+    public interface IAdresDal:IEntityRepository<Adres>
     {
-        Kargo Get(string takip_no);
-        void Delete(string takip_no);
-        KargoDetail GetKargoDetail(string takip_no);
+        List<Il> getIller();
+        List<Ilce> getIlceler(int il_id);
     }
 }

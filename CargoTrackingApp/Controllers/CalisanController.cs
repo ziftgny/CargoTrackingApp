@@ -20,6 +20,18 @@ namespace WebAPI.Controllers
             var result = _calisanService.GetAll();
             return Ok(result);
         }
+        [HttpGet("getallkurye")]
+        public IActionResult GetAllKurye()
+        {
+            var result = _calisanService.GetAllKurye();
+            return Ok(result);
+        }
+        [HttpGet("getcalisanlogincheck")]
+        public IActionResult GetCalisanLoginCheck(string tc_no, string password)
+        {
+            var result = _calisanService.CalisanLoginCheck(tc_no, password);
+            return Ok(result);
+        }
 
         [HttpGet("get")]
         public IActionResult Get(string tc)

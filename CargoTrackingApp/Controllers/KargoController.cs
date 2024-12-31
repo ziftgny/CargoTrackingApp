@@ -21,9 +21,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("get")]
-        public IActionResult Get(int id)
+        public IActionResult Get(string takip_no)
         {
-            var result = _kargoService.GetById(id);
+            var result = _kargoService.GetByTc(takip_no);
             return Ok(result);
         }
 
@@ -39,16 +39,16 @@ namespace WebAPI.Controllers
             _kargoService.Update(kargo);
             return Ok();
         }
-        [HttpPost("delete")]
-        public IActionResult Delete(int id)
+        [HttpDelete("delete")]
+        public IActionResult Delete(string takip_no)
         {
-            _kargoService.Delete(id);
+            _kargoService.Delete(takip_no);
             return Ok();
         }
         [HttpGet("getdetail")]
-        public IActionResult GetDetail(int id)
+        public IActionResult GetDetail(string takip_no)
         {
-            var result = _kargoService.GetDetail(id);
+            var result = _kargoService.GetDetail(takip_no);
             return Ok(result);
         }
     }

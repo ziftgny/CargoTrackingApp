@@ -24,7 +24,10 @@ namespace Business.Concretes
             _calisanDal.Add(entity);
         }
 
-        
+        public bool CalisanLoginCheck(string tc_no, string sifre)
+        {
+            return _calisanDal.CalisanLoginCheck(tc_no, sifre); 
+        }
 
         public void Delete(string tc)
         {
@@ -35,12 +38,17 @@ namespace Business.Concretes
         {
             return _calisanDal.GetAll();
         }
-   
-       
+
+        public List<Calisan> GetAllKurye()
+        {
+            return _calisanDal.GetAllKurye();
+        }
+
         public Calisan GetByTc(string tc)
         {
             return _calisanDal.Get(tc);
         }
+
 
         public void Update(Calisan entity)
         {

@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace Entity.Concretes
 {
-    public class Calisan:IEntity
+    public class CalisanDetail:IEntity
     {
-        public int id { get; set; }
+        public int id {  get; set; }
         public string ad { get; set; }
         public string soyad { get; set; }
-        public int sube_id { get; set; }
+        public string sube { get; set; }
         public string tc_no { get; set; }
+        public string sifre { get; set; }
+        public string yetki { get;set; }
+        
     }
 }

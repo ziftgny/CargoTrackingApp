@@ -9,6 +9,7 @@ namespace Business.Abstracts
 {
     public interface IMusteriService
     {
+        MusteriDetail GetDetail(string tc);
         Musteri GetByTc(string tc);
         List<Musteri> GetAll();
         void Add(Musteri entity);
