@@ -31,6 +31,13 @@ namespace WebAPI.Controllers
             var result = _adresSercive.getIller();
             return Ok(result);
         }
+        
+        [HttpGet("getidbytcno")]
+        public IActionResult getIdByTcNo(string tc_no)
+        {
+            var result = _adresSercive.getAddressIdByTcNo(tc_no);
+            return Ok(result);
+        }
 
         [HttpPost("add")]
         public IActionResult Add(Adres adres)

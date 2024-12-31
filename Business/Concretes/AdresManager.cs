@@ -28,6 +28,11 @@ namespace Business.Concretes
             _adresDal.Delete(entity);
         }
 
+        public int getAddressIdByTcNo(string tc_no)
+        {
+            return _adresDal.getAddressIdByTcNo(tc_no);
+        }
+
         public List<Adres> GetAll()
         {
             return _adresDal.GetAll();

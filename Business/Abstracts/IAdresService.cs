@@ -9,6 +9,8 @@ namespace Business.Abstracts
 {
     public interface IAdresService
     {
+        int getAddressIdByTcNo(string tc_no);
+
         List<Il> getIller();
         List<Ilce> getIlceler(int il_id);
         List<Adres> GetAll();

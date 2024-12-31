@@ -12,6 +12,21 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfAdresDal: EfEntityRepositoryBase<Adres,CargoTrackingDatabaseContext> ,IAdresDal
     {
+        public int getAddressIdByTcNo(string tc_no)
+        {
+            using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
+            {
+                var result = from i in context.adresler
+                             where i.musteri_tc==tc_no
+                             select new Adres
+                             {
+                                id = i.id
+                             };
+                return  result.ToList()[0].id;
+            }
+        }
+
+        
         public List<Il> getIller()
         {
             using (CargoTrackingDatabaseContext context = new CargoTrackingDatabaseContext())
